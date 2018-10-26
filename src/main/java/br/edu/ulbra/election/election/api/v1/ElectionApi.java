@@ -31,13 +31,13 @@ public class ElectionApi {
         return new ElectionOutput();
     }
 
-    @PutMapping("/")
+    @PostMapping("/")
     @ApiOperation(value = "Create new election")
     public ElectionOutput create(@RequestBody ElectionInput electionInput){
         return new ElectionOutput();
     }
 
-    @PostMapping("/{electionId}")
+    @PutMapping("/{electionId}")
     @ApiOperation(value = "Update election")
     public ElectionOutput update(@PathVariable Long electionId, @RequestBody ElectionInput electionInput){
         return new ElectionOutput();
