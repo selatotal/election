@@ -30,7 +30,7 @@ public class ElectionService {
 
 
     private static final String MESSAGE_INVALID_ID = "Invalid id";
-    private static final String MESSAGE_VOTER_NOT_FOUND = "Candidate not found";
+    private static final String MESSAGE_ELECTION_NOT_FOUND = "Election not found";
 
     public List<ElectionOutput> getAll(){
         Type electionOutputListType = new TypeToken<List<ElectionOutput>>(){}.getType();
@@ -52,7 +52,7 @@ public class ElectionService {
 
         Election election = electionRepository.findById(electionId).orElse(null);
         if (election == null){
-            throw new GenericOutputException(MESSAGE_VOTER_NOT_FOUND);
+            throw new GenericOutputException(MESSAGE_ELECTION_NOT_FOUND);
         }
 
         return modelMapper.map(election, ElectionOutput.class);
@@ -67,7 +67,7 @@ public class ElectionService {
 
         Election election = electionRepository.findById(electionId).orElse(null);
         if (election == null){
-            throw new GenericOutputException(MESSAGE_VOTER_NOT_FOUND);
+            throw new GenericOutputException(MESSAGE_ELECTION_NOT_FOUND);
         }
 
         election.setStateCode(electionInput.getStateCode());
@@ -84,12 +84,12 @@ public class ElectionService {
 
         Election election = electionRepository.findById(electionId).orElse(null);
         if (election == null){
-            throw new GenericOutputException(MESSAGE_VOTER_NOT_FOUND);
+            throw new GenericOutputException(MESSAGE_ELECTION_NOT_FOUND);
         }
 
         electionRepository.delete(election);
 
-        return new GenericOutput("Candidate deleted");
+        return new GenericOutput("Election deleted");
     }
 
     private void validateDuplicate(ElectionInput electionInput, Long id){
