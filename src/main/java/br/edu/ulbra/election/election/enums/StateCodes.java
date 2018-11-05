@@ -1,0 +1,31 @@
+package br.edu.ulbra.election.election.enums;
+
+public enum StateCodes {
+    AC,
+    AL,
+    AP,
+    AM,
+    BA,
+    CE,
+    DF,
+    ES,
+    GO,
+    MA,
+    MT,
+    MS,
+    MG,
+    PA,
+    PB,
+    PR,
+    PE,
+    PI,
+    RO,
+    RR,
+    RJ,
+    RN,
+    SC,
+    SP,
+    SE,
+    TO;
+
+}
