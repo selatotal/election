@@ -21,6 +21,7 @@ public enum StateCodes {
     PI,
     RO,
     RR,
+    RS,
     RJ,
     RN,
     SC,
