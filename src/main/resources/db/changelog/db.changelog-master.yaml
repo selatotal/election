@@ -8,3 +8,12 @@ databaseChangeLog:
       rollbackFile:
         path: "scripts/001.CREATE_TABLE_ELECTION.rollback.sql"
         relativeToChangelogFile: true
+  - changeSet:
+      id: CREATE_TABLE_VOTE
+      author: tales.viegas
+      sqlFile:
+        path: "scripts/002.CREATE_TABLE_VOTE.sql"
+        relativeToChangelogFile: true
+      rollbackFile:
+        path: "scripts/002.CREATE_TABLE_VOTE.rollback.sql"
+        relativeToChangelogFile: true
