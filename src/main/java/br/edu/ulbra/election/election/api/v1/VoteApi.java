@@ -3,6 +3,7 @@ package br.edu.ulbra.election.election.api.v1;
 import br.edu.ulbra.election.election.input.v1.VoteInput;
 import br.edu.ulbra.election.election.output.v1.GenericOutput;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import java.util.List;
 public class VoteApi {
 
     @PutMapping("/{electionId}")
-    public GenericOutput electionVote(@RequestBody VoteInput voteInput){
+    public GenericOutput electionVote(@PathVariable Long electionId, @RequestBody VoteInput voteInput){
         return new GenericOutput("OK");
     }
 
