@@ -25,9 +25,9 @@ public class VoteService {
         this.electionRepository = electionRepository;
     }
 
-    public GenericOutput electionVote(Long electionId, VoteInput voteInput){
+    public GenericOutput electionVote(VoteInput voteInput){
 
-        Election election = validateInput(electionId, voteInput);
+        Election election = validateInput(voteInput.getElectionId(), voteInput);
         Vote vote = new Vote();
         vote.setElection(election);
         vote.setVoterId(voteInput.getVoterId());
@@ -46,9 +46,9 @@ public class VoteService {
         return new GenericOutput("OK");
     }
 
-    public GenericOutput multiple(Long electionId, List<VoteInput> voteInputList){
+    public GenericOutput multiple(List<VoteInput> voteInputList){
         for (VoteInput voteInput : voteInputList){
-            this.electionVote(electionId, voteInput);
+            this.electionVote(voteInput);
         }
         return new GenericOutput("OK");
     }
