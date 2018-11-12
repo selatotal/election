@@ -9,4 +9,8 @@ public interface VoteRepository extends CrudRepository<Vote, Long> {
     Vote findFirstByVoterIdAndElection(Long voterId, Election election);
 
     Long countByElection(Election election);
+
+    Long countByElectionAndBlankVote(Election election, Boolean blankVote);
+
+    Long countByElectionAndNullVote(Election election, Boolean nullVote);
 }

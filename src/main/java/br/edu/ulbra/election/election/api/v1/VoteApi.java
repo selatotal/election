@@ -5,7 +5,7 @@ import br.edu.ulbra.election.election.output.v1.GenericOutput;
 import br.edu.ulbra.election.election.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,12 +22,12 @@ public class VoteApi {
         this.voteService = voteService;
     }
 
-    @PutMapping("/")
+    @PostMapping("/")
     public GenericOutput electionVote(@RequestBody VoteInput voteInput){
         return voteService.electionVote(voteInput);
     }
 
-    @PutMapping("/multiple")
+    @PostMapping("/multiple")
     public GenericOutput multipleElectionVote(@RequestBody List<VoteInput> voteInputList){
         return voteService.multiple(voteInputList);
     }
