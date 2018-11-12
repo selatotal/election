@@ -7,6 +7,7 @@ import br.edu.ulbra.election.election.model.Election;
 import br.edu.ulbra.election.election.output.v1.ElectionOutput;
 import br.edu.ulbra.election.election.output.v1.GenericOutput;
 import br.edu.ulbra.election.election.repository.ElectionRepository;
+import br.edu.ulbra.election.election.repository.VoteRepository;
 import org.apache.commons.lang.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -20,12 +21,14 @@ import java.util.List;
 public class ElectionService {
 
     private final ElectionRepository electionRepository;
+    private final VoteRepository voteRepository;
     private final ModelMapper modelMapper;
     
     @Autowired
-    public ElectionService(ElectionRepository electionRepository, ModelMapper modelMapper){
+    public ElectionService(ElectionRepository electionRepository, ModelMapper modelMapper, VoteRepository voteRepository){
         this.electionRepository = electionRepository;
         this.modelMapper = modelMapper;
+        this.voteRepository = voteRepository;
     }
 
 
@@ -70,6 +73,11 @@ public class ElectionService {
             throw new GenericOutputException(MESSAGE_ELECTION_NOT_FOUND);
         }
 
+        Long votes = voteRepository.countByElection(election);
+        if (votes > 0){
+            throw new GenericOutputException("Election already has votes");
+        }
+
         election.setStateCode(electionInput.getStateCode());
         election.setDescription(electionInput.getDescription());
         election.setYear(electionInput.getYear());
@@ -85,6 +93,11 @@ public class ElectionService {
         Election election = electionRepository.findById(electionId).orElse(null);
         if (election == null){
             throw new GenericOutputException(MESSAGE_ELECTION_NOT_FOUND);
+        }
+
+        Long votes = voteRepository.countByElection(election);
+        if (votes > 0){
+            throw new GenericOutputException("Election already has votes");
         }
 
         electionRepository.delete(election);
