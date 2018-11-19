@@ -38,4 +38,12 @@ public class CandidateOutput {
     public void setPartyOutput(PartyOutput partyOutput) {
         this.partyOutput = partyOutput;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
