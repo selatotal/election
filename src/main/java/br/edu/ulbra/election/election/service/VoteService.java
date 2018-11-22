@@ -89,4 +89,8 @@ public class VoteService {
         }
         return election;
     }
+
+    public GenericOutput findVotesByVoter(Long voterId) {
+        return new GenericOutput(""+voteRepository.countByVoterId(voterId));
+    }
 }

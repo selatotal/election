@@ -4,10 +4,7 @@ import br.edu.ulbra.election.election.input.v1.VoteInput;
 import br.edu.ulbra.election.election.output.v1.GenericOutput;
 import br.edu.ulbra.election.election.service.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +28,11 @@ public class VoteApi {
     public GenericOutput multipleElectionVote(@RequestBody List<VoteInput> voteInputList){
         return voteService.multiple(voteInputList);
     }
+
+    @GetMapping("/findVotesByVoter/{voterId}")
+    public GenericOutput findVotesByVoter(@PathVariable(name = "voterId") Long voterId){
+        return voteService.findVotesByVoter(voterId);
+    }
+
+
 }
