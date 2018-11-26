@@ -47,7 +47,7 @@ public class VoteService {
         } else {
             vote.setBlankVote(false);
             try {
-                candidateClientService.getById(voteInput.getCandidateNumber());
+                candidateClientService.getByNumberAndElection(voteInput.getElectionId(), voteInput.getCandidateNumber());
             } catch (FeignException ex){
                 if (ex.status() == 500){
                     vote.setNullVote(true);
