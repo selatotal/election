@@ -6,6 +6,7 @@ import br.edu.ulbra.election.election.exception.GenericOutputException;
 import br.edu.ulbra.election.election.input.v1.VoteInput;
 import br.edu.ulbra.election.election.model.Election;
 import br.edu.ulbra.election.election.model.Vote;
+import br.edu.ulbra.election.election.output.v1.CandidateOutput;
 import br.edu.ulbra.election.election.output.v1.GenericOutput;
 import br.edu.ulbra.election.election.repository.ElectionRepository;
 import br.edu.ulbra.election.election.repository.VoteRepository;
@@ -47,7 +48,8 @@ public class VoteService {
         } else {
             vote.setBlankVote(false);
             try {
-                candidateClientService.getByNumberAndElection(voteInput.getElectionId(), voteInput.getCandidateNumber());
+                CandidateOutput candidateOutput = candidateClientService.getByNumberAndElection(voteInput.getElectionId(), voteInput.getCandidateNumber());
+                vote.setCandidateId(candidateOutput.getId());
             } catch (FeignException ex){
                 if (ex.status() == 500){
                     vote.setNullVote(true);
