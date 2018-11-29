@@ -21,12 +21,12 @@ public class VoteApi {
 
     @PostMapping("/")
     public GenericOutput electionVote(@RequestHeader(value = "x-token") String token, @RequestBody VoteInput voteInput){
-        return voteService.electionVote(voteInput);
+        return voteService.electionVote(token, voteInput);
     }
 
     @PostMapping("/multiple")
     public GenericOutput multipleElectionVote(@RequestHeader(value = "x-token") String token, @RequestBody List<VoteInput> voteInputList){
-        return voteService.multiple(voteInputList);
+        return voteService.multiple(token, voteInputList);
     }
 
     @GetMapping("/findVotesByVoter/{voterId}")
